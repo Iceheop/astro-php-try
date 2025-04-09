@@ -1,0 +1,37 @@
+---
+const response = await fetch('http://localhost/astro-php-try/server/api.php');
+const posts = await response.json();
+---
+
+<ul>
+	{posts.map((post: { title: unknown; content: unknown; author: unknown; date: unknown; }) => (
+	  <li>
+		<h2>{post.title}</h2>
+		<p>{post.content}</p>
+		<p>Author: {post.author}</p>
+		<p>Date: {post.date}</p>
+	  </li>
+	))}
+</ul>
+  
+<style>
+	ul {
+		list-style-type: none;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+	}
+	ul li {
+		background-color: #f9f9f9;
+		padding: 1rem;
+		border-radius: 5px;
+		box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+	}
+	ul li h2 {
+		margin: 0 0 0.5rem;
+	}
+	ul li p {
+		margin: 0.5rem 0;
+	}
+</style>
